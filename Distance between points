@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class TestPair {
+   public static void main(String[] args) {
+      Scanner in = new Scanner(System.in);
+      System.out.print("Enter the number of points: ");
+      int n = in.nextInt();
+      int[][] arr = new int[n][2];
+      System.out.println("Enter " + n + " points (x and y for each):");
+      for (int i = 0; i < n; i++) {
+         for (int j = 0; j < 2; j++) {
+            arr[i][j] = in.nextInt();
+         }
+      }
+      double d=Double.MAX_VALUE;
+      for (int i = 0; i < arr.length - 1; i++) {
+         for (int j = i + 1; j < arr.length; j++) {
+            double x1 = arr[i][0];
+            double y1 = arr[i][1];
+            double x2 = arr[j][0];
+            double y2 = arr[j][1];
+            d=Math.min(d,Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
+         }
+      }
+      System.out.println("The closest distance is: "+d);
+   }
+}
