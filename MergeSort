@@ -1,0 +1,61 @@
+
+import java.util.Scanner;
+
+public class MergeSort {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter the number of elements:");
+        int n = in.nextInt();
+        int A[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            System.out.print("enter element " + (i + 1) + " :");
+            A[i] = in.nextInt();
+        }
+        System.out.println("Before Sorting:");
+        for (int i : A) {
+            System.out.print(i + " ");
+        }
+
+        MergeSort(A, 0, A.length - 1);
+
+        System.out.println("\nAfter Sorting:");
+        for (int i : A) {
+            System.out.print(i + " ");
+        }
+
+    }
+
+    public static void MergeSort(int[] arr, int l, int r) {
+        if (l < r) {
+            int m = (l + r) / 2;
+            MergeSort(arr, l, m);
+            MergeSort(arr, m + 1, r);
+            Merge(arr, l, m, r);
+        }
+
+    }
+
+    public static void Merge(int[] A, int l, int m, int r) {
+        int i = l;
+        int j = m + 1;
+        int k = l;
+
+        int[] B = new int[A.length];
+        while (i <= m && j <= r) {
+            if (A[i] <= A[j]) {
+                B[k++] = A[i++];
+            } else {
+                B[k++] = A[j++];
+            }
+        }
+        while (i <= m) {
+            B[k++] = A[i++];
+        }
+        while (j <= r) {
+            B[k++] = A[j++];
+        }
+        for (int p = l; p <= r; p++) {
+            A[p] = B[p];
+        }
+    }
+}
